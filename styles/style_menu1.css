@@ -1,0 +1,128 @@
+
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+blockquote, q {
+	quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 10;
+}
+
+.clearfix {
+	clear: both;
+}
+
+.wrap {
+	width: 355px;
+	margin: 4em auto;
+}
+
+.menu li {
+	float: left;
+	position: relative;
+}
+
+.menu li a {
+	display: block;
+	font-size: 13px;
+	line-height: 25px;
+	padding: 6px 12px;
+	margin: 8px 8px;
+	text-decoration: none;
+}
+
+.menu li a:hover {
+	border-radius: 12px;
+	box-shadow: inset 0px 0px 1px 1px rgba(0,0,0,0.1);
+	color: white;/*color de letra en hover*/
+}
+
+.menu ul {
+	position: absolute;
+	left: -9999px;
+	list-style: none;
+	opacity: 0;
+	transition: opacity 1s ease;
+}
+
+.menu ul li {
+	float: none;
+}
+
+.menu ul a {
+	white-space: nowrap;
+}
+
+.menu li:hover ul {
+	background: #090992e1;/*color del fondo de menú desplegado*/
+	border-radius: 0 0 6px 6px;
+	box-shadow: inset 0px 2px 4px rgba(0,0,0,0.4);
+	left: 5px;
+	opacity: 1;
+}
+
+.color{
+	color:white;
+}
+
+.fondo{background:gray;}
+.fondo{color:black;}
+.fondo1{background:gray;}
+.fondo1{color:black;}
+.letra{color:#000;}
+
+
+.menu li label{
+	color: green;
+		   	  }
+
+table td {
+			background:#D8D8DD;
+		 }
+table th {
+			border: white 3px solid;
+			text-align:center;
+		 }
+		 
+table td {
+			border: white 3px solid;
+			text-align:center;
+		 }
+
+#table1  td {
+  border: black 2px solid;
+}
+
+#table1  th {
+  border: black 2px solid;
+}
+
+#table2  td {
+  border: black 2px solid;
+}
+
+#table2  th {
+  border: black 2px solid;
+}
+
+#table  td {
+  border: #052501 2px solid;
+  background: white;
+
+
+}

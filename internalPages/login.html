@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Inicio de sesión</title>
+    <link rel="stylesheet" href="../styles/login.css" />
+  </head>
+  <body>
+    <div class="login-box">
+      <img
+        src="../styles/images/icons/Logo_login2.png"
+        class="avatar"
+        alt="Avatar Image"
+      />
+
+      <form id="formLogin">
+        <label for="ciLogin">Cédula de identidad</label>
+        <input
+          id="ciLogin"
+          name="ciLogin"
+          type="text"
+          placeholder="Ingrese su número de cédula"
+          value=""
+        />
+
+        <label for="passwordLogin">Contraseña</label>
+        <input
+          id="passwordLogin"
+          name="passwordLogin"
+          type="password"
+          placeholder="Ingrese su contraseña"
+          value=""
+        />
+
+        <input
+          id="btnSubmit"
+          name="btnSubmit"
+          type="submit"
+          value="Iniciar sesión"
+        />
+        <a class="volverInicio" href="registro.html">Crear cuenta</a>
+        <br />
+        <a class="volverInicio" href="../index.html">Volver al inicio</a> <br />
+
+        <input type="hidden" name="formulario" value="login" />
+      </form>
+    </div>
+
+    <script type="module" src="../src/script/loginScript.js"></script>
+  </body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Registrarse</title>
+    <link rel="stylesheet" href="../styles/registro.css" />
+    <style>
+      select,
+      input[type="date"] {
+        padding: 10px;
+        border-radius: 3px;
+        box-shadow: 0px 0px 6px grey;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-box">
+      <h1>Registrarse</h1>
+      <form id="formRegister">
+        <div class="decentInputs">
+          <label for="username">Cédula de Identidad</label>
+          <input
+            id="username"
+            name="username"
+            type="text"
+            placeholder="Ingrese su número de cédula"
+          />
+        </div>
+        <div class="decentInputs">
+          <label for="name">Nombre</label>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            placeholder="Ingrese su nombre"
+          />
+        </div>
+        <div class="decentInputs">
+          <label for="appe">Apellido</label>
+          <input
+            id="appe"
+            name="appe"
+            type="text"
+            placeholder="Ingrese su apellido"
+          />
+        </div>
+        <div class="decentInputs">
+          <label for="tlf">Telefono</label>
+          <input
+            id="tlf"
+            name="tlf"
+            type="text"
+            placeholder="Ingrese su telefono"
+          />
+        </div>
+        <div class="decentInputs">
+          <label for="mail">Correo</label>
+          <input
+            id="mail"
+            name="mail"
+            type="text"
+            placeholder="Ingrese su correo"
+          />
+        </div>
+        <div class="decentInputs">
+          <label for="dire">Dirección</label>
+          <input
+            id="dire"
+            name="dire"
+            type="text"
+            placeholder="Ingrese su dirección"
+          />
+        </div>
+
+        <div class="decentInputs">
+          <label for="tutor">Tutor</label>
+
+          <select name="tutor" id="tutor" style="width: 100%">
+            <!-- Aca van los tutores insertados con js -->
+          </select>
+        </div>
+
+        <div class="decentInputs">
+          <label for="nameServicio">Nombre del Servicio Comunitario</label>
+          <input
+            id="nameServicio"
+            name="nameServicio"
+            type="text"
+            placeholder="Ingrese nombre del Servicio Comunitario"
+          />
+        </div>
+        <div class="decentInputs">
+          <label for="fechaServicio"
+            >Fecha de Inicio del Servicio Comunitario</label
+          >
+          <input
+            id="fechaServicio"
+            name="fechaServicio"
+            type="date"
+            placeholder
+          />
+        </div>
+        <div class="decentInputs">
+          <label for="pnf">PNF</label>
+
+          <select name="pnf" id="pnf" style="width: 100%">
+            <!-- carreras insertadas con js -->
+          </select>
+        </div>
+        <br />
+        <br />
+
+        <div class="decentInputs">
+          <label for="password">Contraseña</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            placeholder="Ingrese contraseña"
+          />
+        </div>
+
+        <input
+          id="register"
+          name="register"
+          type="submit"
+          value="Registrarse"
+        />
+        <a class="volverInicio" href="../index.html">Volver al inicio</a>
+
+        <input type="hidden" name="formulario" value="register" />
+      </form>
+    </div>
+    <!-- <script src="js/myScripts/myFetch.js"></script> -->
+    <script type="module" src="../src/script/registroScript.js"></script>
+  </body>
+</html>

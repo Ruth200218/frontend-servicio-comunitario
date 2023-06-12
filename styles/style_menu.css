@@ -1,0 +1,27 @@
+
+.menu li a {
+    font-weight: bold;
+    vertical-align: middle;
+}
+
+.menu li a:hover {
+    background-image: linear-gradient(#ffffff41, #b06cd869);
+    border-radius: 2px;
+}
+
+.menu li ul {
+    display: none;
+    position: absolute;
+    z-index: 999;
+}
+
+.menu li:hover > ul {
+    display:block;
+}
+
+.menu li ul li ul {
+    top:30px;
+    margin:0px 120px;
+    width: 165px;
+    height: auto;
+}

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <linkhref="https: //unpkg.com/boxicons@2.0.9/css/boxicons.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles/style_gestion.css" />
+  <title>Panel de Administración</title>
+</head>
+
+<body>
+  <section id="sidebar">
+    <a href="index_adminitrador.html" class="brand">
+      <span class="text">Inicio</span>
+    </a>
+    <ul class="side-menu top">
+      <li class="active">
+        <a href="#">
+          <i class="bx bxs-dashboard"></i>
+          <span class="text">Panel Principal</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="usuarios.html">
+          <i class="bx bxs-group"></i>
+          <span class="text">Gestión de Usuarios</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="gestion_sc.html">
+          <i class="bx bxs-user-pin"></i>
+          <span class="text">Gestión Servicio Comunitario</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="gestion_no_activos.html">
+          <i class="bx bxs-dashboard"></i>
+          <span class="text">Servicios No Activos</span>
+        </a>
+      </li>
+    </ul>
+    <ul class="side-menu">
+      <li>
+        <a href="/internalPages/index_adminitrador.html" class="logout">
+          <i class="bx bxs-log-out-circle"></i>
+          <span class="text">Cerrar</span>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section id="content">
+    <main>
+      <input type="text" id="searchInput" placeholder="Buscar por nombre" style="
+            padding: 18px;
+            border: none;
+            width: 80%;
+            margin: 0 auto;
+            display: block;
+            border-radius: 1000px;
+            font-size: 1.25rem;
+            margin-bottom: 2rem">
+
+      <div class="head-title">
+        <div class="left">
+          <h1>Panel Principal</h1>
+        </div>
+      </div>
+
+      <div class="table-data">
+        <div class="order">
+          <div class="head">
+            <h3>Usuarios</h3>
+          </div>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Cedula</th>
+                <th>Nombre y Apellido</th>
+                <th>Telefono</th>
+                <th>Correo</th>
+                <th>Dirección</th>
+              </tr>
+            </thead>
+            <tbody id="contenedor-usuarios"></tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </section>
+
+  <script type="module" src="../src/script/gestionScript.js"></script>
+</body>
+
+</html>
