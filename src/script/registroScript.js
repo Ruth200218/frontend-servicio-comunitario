@@ -80,7 +80,7 @@ const validarFormulario = function (e) {
   // Validación de campos que deben ser letras
   const camposLetras = [name, appe, dire, nameServicio];
 
-  const regexLetras = /^[A-Za-z\s]+$/;
+  const regexLetras = /[A-Za-zÁÉÍÓÚÑáéíóúñ]/;
 
   for (let campo of camposLetras) {
     if (!regexLetras.test(campo)) {

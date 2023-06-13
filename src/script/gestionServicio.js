@@ -36,7 +36,7 @@ arrayEstudents.forEach((estudiante) => {
       </td>
       <td>
           <button class="listener" name="${id}" id="${id}">
-              Aprobado
+              Calificar
           </button>
       </td>
   </tr>

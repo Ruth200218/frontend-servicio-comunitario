@@ -29,10 +29,6 @@ export function loginFetchPost(objSend) {
   fetch(url, requestOptions)
     .then((res) => res.json())
     .then((data) => {
-      if (data === "Clave erronea") {
-        alert("Clave o usuario erroneo. Intente otra vez.");
-        cleanInputs();
-      } else {
         TOKEN = data.token;
         alert("Login exitoso.");
         console.log("Data:", data);
@@ -46,9 +42,11 @@ export function loginFetchPost(objSend) {
         } else if (data.usuario.roleId == 1) {
           window.location.href = "index_adminitrador.html";
         }
-      }
     })
     .catch((err) => {
       console.error("Error en la solicitud:", err);
+      alert("Clave o usuario erroneo. Intente otra vez.");
+      cleanInputs();
+        
     });
 }

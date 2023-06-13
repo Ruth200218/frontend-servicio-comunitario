@@ -40,6 +40,7 @@ export function registroFetchPost(objSend) {
       alert("Usuario registrado: " + data[0].user.cedula);
 
       cleanInputs();
+      window.location.href = "login.html";
     })
     .catch((error) => {
       console.error("Error en la solicitud:", error);
