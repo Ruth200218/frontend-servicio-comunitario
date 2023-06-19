@@ -140,9 +140,6 @@ calificar.forEach((btn) => {
 
     const cerrarVentana = document.querySelector(".cancelar");
     cerrarVentana.addEventListener("click", showInterface);
-
-    console.log("selectedId:", selectedId);
-    console.log("Ruta:", `${RUTA}/Servicio/${selectedId}`);
   });
 });
 
@@ -150,9 +147,7 @@ const aprobarEstudiante = (id) => {
   const valorFechaInicio = document.querySelector(".valorFechaInicio").value;
   const valorFechaFin = document.querySelector("#interfaceDate").value;
 
-  console.log(valorFechaInicio);
-
-  console.log(valorFechaFin);
+  alert(1);
 
   fetch(`${RUTA}/Servicio/${id}`, {
     method: "PUT",
@@ -184,10 +179,6 @@ const aprobarEstudiante = (id) => {
 const reprobarEstudiante = (id) => {
   const valorFechaInicio = document.querySelector(".valorFechaInicio").value;
   const valorFechaFin = document.querySelector("#interfaceDate").value;
-
-  console.log(valorFechaInicio);
-
-  console.log(valorFechaFin);
 
   fetch(`${RUTA}/Servicio/${id}`, {
     method: "PUT",
