@@ -6,7 +6,16 @@ const usersContainer = document.querySelector("#contenedor-usuarios");
 arrayEstudents = arrayEstudents.sort((a, b) => {
   a.user.nombre.localeCompare(b.user.nombre);
 });
-arrayEstudents.forEach((estudiante) => {
+
+const newArray = arrayEstudents.filter((estudiante) => {
+  return (
+    estudiante.user.roleId == 2 &&
+    new Date(estudiante.servicio.fechaFin).getMonth() ==
+      new Date(estudiante.servicio.fechaInicio).getMonth() + 1
+  );
+});
+
+newArray.forEach((estudiante) => {
   if (
     estudiante.user.roleId == 2 &&
     new Date(estudiante.servicio.fechaFin).getMonth() ==
@@ -41,7 +50,7 @@ const searchInput = document.getElementById("searchInput");
 
 searchInput.addEventListener("input", () => {
   const searchTerm = searchInput.value.trim().toLowerCase();
-  const filteredUsers = arrayEstudents.filter((usuario) => {
+  const filteredUsers = newArray.filter((usuario) => {
     const nombreCompleto =
       `${usuario.user.nombre} ${usuario.user.apellido}`.toLowerCase();
     return nombreCompleto.includes(searchTerm);

@@ -10,7 +10,15 @@ arrayEstudents = arrayEstudents.sort((a, b) => {
   a.user.nombre.localeCompare(b.user.nombre);
 });
 
-arrayEstudents.forEach((estudiante) => {
+const newArray = arrayEstudents.filter((estudiante) => {
+  return (
+    estudiante.user.roleId == 2 &&
+    new Date(estudiante.servicio.fechaFin).getMonth() ==
+      new Date(estudiante.servicio.fechaInicio).getMonth() + 1
+  );
+});
+
+newArray.forEach((estudiante) => {
   if (
     estudiante.user.roleId == 2 &&
     new Date(estudiante.servicio.fechaFin).getMonth() ==
@@ -22,6 +30,7 @@ arrayEstudents.forEach((estudiante) => {
     const nombre = estudiante.user.nombre;
     const apellido = estudiante.user.apellido;
     const titulo = estudiante.servicio.titulo;
+    const valorFechaInicio = estudiante.servicio.fechaInicio;
 
     usersContainer.innerHTML += `
     <tr>
@@ -38,6 +47,9 @@ arrayEstudents.forEach((estudiante) => {
                 ${titulo}
             </p>
         </td>
+
+        <input class="valorFechaInicio" type="hidden" name="" value="${valorFechaInicio}">
+
         <td>
             <button class="listener" name="servicio-${nroServicio}" id="servicio-${id}">
                 Calificar
@@ -54,7 +66,7 @@ const searchInput = document.getElementById("searchInput");
 
 searchInput.addEventListener("input", () => {
   const searchTerm = searchInput.value.trim().toLowerCase();
-  const filteredUsers = arrayEstudents.filter((usuario) => {
+  const filteredUsers = newArray.filter((usuario) => {
     const nombreCompleto =
       `${usuario.user.nombre} ${usuario.user.apellido}`.toLowerCase();
     return nombreCompleto.includes(searchTerm);
@@ -68,26 +80,38 @@ function displayResults(users) {
 
   users.forEach((estudiante) => {
     if (estudiante.user.roleId == 2) {
-      const ci = estudiante.user.cedula;
-      const name = estudiante.user.nombre;
-      const lastname = estudiante.user.apellido;
-      const tlf = estudiante.user.telefono;
-      const email = estudiante.user.correo;
-      const adress = estudiante.user.direccion;
-      usersContainer.innerHTML +=
-        "<tr><td><p>" +
-        ci +
-        "</p></td><td><p>" +
-        name +
-        " " +
-        lastname +
-        "</p></td><td><p>" +
-        tlf +
-        "</p></td><td><p>" +
-        email +
-        "</p></td><td><p>" +
-        adress +
-        "</p></td></tr>";
+      const id = estudiante.userId;
+      const nroServicio = estudiante.servicio.id;
+      const cedula = estudiante.user.cedula;
+      const nombre = estudiante.user.nombre;
+      const apellido = estudiante.user.apellido;
+      const titulo = estudiante.servicio.titulo;
+      const valorFechaInicio = estudiante.servicio.fechaInicio;
+      usersContainer.innerHTML +=`
+      <tr>
+          <td>
+              <p>
+                  ${cedula}
+              </p>
+          </td>
+          <td>
+              <label for="${id}">${nombre} ${apellido} </label>
+          </td>
+          <td>
+              <p>
+                  ${titulo}
+              </p>
+          </td>
+  
+          <input class="valorFechaInicio" type="hidden" name="" value="${valorFechaInicio}">
+  
+          <td>
+              <button class="listener" name="servicio-${nroServicio}" id="servicio-${id}">
+                  Calificar
+              </button>
+          </td>
+      </tr>
+    `;
     }
   });
 }
@@ -123,7 +147,10 @@ calificar.forEach((btn) => {
 });
 
 const aprobarEstudiante = (id) => {
+  const valorFechaInicio = document.querySelector(".valorFechaInicio").value;
   const valorFechaFin = document.querySelector("#interfaceDate").value;
+
+  console.log(valorFechaInicio);
 
   console.log(valorFechaFin);
 
@@ -134,6 +161,7 @@ const aprobarEstudiante = (id) => {
       "token-x": token,
     },
     body: JSON.stringify({
+      fechaInicio: valorFechaInicio,
       fechaFin: valorFechaFin,
       estado: true,
     }),
@@ -154,7 +182,10 @@ const aprobarEstudiante = (id) => {
 };
 
 const reprobarEstudiante = (id) => {
+  const valorFechaInicio = document.querySelector(".valorFechaInicio").value;
   const valorFechaFin = document.querySelector("#interfaceDate").value;
+
+  console.log(valorFechaInicio);
 
   console.log(valorFechaFin);
 
@@ -165,6 +196,7 @@ const reprobarEstudiante = (id) => {
       "token-x": token,
     },
     body: JSON.stringify({
+      fechaInicio: valorFechaInicio,
       fechaFin: valorFechaFin,
       estado: false,
     }),
