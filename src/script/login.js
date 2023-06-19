@@ -1,4 +1,4 @@
-import { loginFetchPost } from "./loginFetch.js";
+import { loginFetchPost } from "./utils/loginFetch.js";
 
 const formLogin = document.querySelector("#formLogin");
 
