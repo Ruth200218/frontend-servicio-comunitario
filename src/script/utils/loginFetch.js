@@ -29,24 +29,23 @@ export function loginFetchPost(objSend) {
   fetch(url, requestOptions)
     .then((res) => res.json())
     .then((data) => {
-        TOKEN = data.token;
-        alert("Login exitoso.");
-        console.log("Data:", data);
-        console.log("Token:", TOKEN);
-        console.log("Usuario", data.usuario);
-        localStorage.setItem("TOKEN", TOKEN);
-        cleanInputs();
+      TOKEN = data.token;
+      alert("Login exitoso.");
+      console.log("Data:", data);
+      console.log("Token:", TOKEN);
+      console.log("Usuario", data.usuario);
+      localStorage.setItem("TOKEN", TOKEN);
+      cleanInputs();
 
-        if (data.usuario.roleId == 2) {
-          window.location.href = "index_estudiantes.html";
-        } else if (data.usuario.roleId == 1) {
-          window.location.href = "index_adminitrador.html";
-        }
+      if (data.usuario.roleId == 2) {
+        window.location.href = "student.html";
+      } else if (data.usuario.roleId == 1) {
+        window.location.href = "admin.html";
+      }
     })
     .catch((err) => {
       console.error("Error en la solicitud:", err);
       alert("Clave o usuario erroneo. Intente otra vez.");
       cleanInputs();
-        
     });
 }

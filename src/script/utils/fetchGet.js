@@ -1,4 +1,4 @@
-import { RUTA } from "../script/global.js";
+import { RUTA } from "./global.js";
 
 export async function fetchGet(extension) {
   const url = `${RUTA}${extension}`;

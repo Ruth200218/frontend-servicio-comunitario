@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css" />
+    <link rel="stylesheet" href="../styles/style_gestion.css" />
+    <title>Usuarios</title>
+
+    <style>
+      .enable {
+        pointer-events: none;
+        opacity: 0.7;
+      }
+
+      .container-edit h1 {
+        margin-bottom: 40px;
+      }
+
+      .overlay {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        background: #3748c6d1;
+        width: 100%;
+        height: 100%;
+        transition: 0.3s;
+      }
+
+      .disable {
+        pointer-events: none;
+        opacity: 0;
+        transition: 0.3s;
+      }
+
+      .container-edit {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        background: #3939e0;
+        padding: 20px 30px;
+        border-radius: 10px;
+        min-height: 600px;
+        min-width: 300px;
+        width: 70%;
+        box-shadow: 0px 0px 30px darkblue;
+        color: #d5d5d5;
+      }
+
+      .decentInputs {
+        margin-bottom: 5px;
+      }
+
+      label {
+        line-height: 1.5rem;
+        width: 200px;
+        display: inline-block;
+      }
+
+      input,
+      select {
+        padding: 8px;
+        border-radius: 5px;
+      }
+
+      .caja-btn {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+      }
+
+      .caja-btn button {
+        padding: 20px;
+        border-radius: 10px;
+        border: none;
+        width: 30%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="overlay1" class="overlay disable">
+      <div class="container-edit">
+        <h1>Caja de edición de datos de usuario.</h1>
+        <h2 class="user_name"></h2>
+
+        <form id="formRegister">
+          <div class="decentInputs">
+            <label for="username">Cédula de Identidad</label>
+            <input
+              id="username"
+              class="enable"
+              name="username"
+              type="text"
+              placeholder="Ingrese su número de cédula"
+            />
+          </div>
+          <div class="decentInputs">
+            <label for="name">Nombre</label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              placeholder="Ingrese su nombre"
+            />
+          </div>
+          <div class="decentInputs">
+            <label for="appe">Apellido</label>
+            <input
+              id="appe"
+              name="appe"
+              type="text"
+              placeholder="Ingrese su apellido"
+            />
+          </div>
+          <div class="decentInputs">
+            <label for="tlf">Telefono</label>
+            <input
+              id="tlf"
+              name="tlf"
+              type="text"
+              placeholder="Ingrese su telefono"
+            />
+          </div>
+          <div class="decentInputs">
+            <label for="mail">Correo</label>
+            <input
+              id="mail"
+              name="mail"
+              type="text"
+              placeholder="Ingrese su correo"
+            />
+          </div>
+          <div class="decentInputs">
+            <label for="dire">Dirección</label>
+            <input
+              id="dire"
+              name="dire"
+              type="text"
+              placeholder="Ingrese su dirección"
+            />
+          </div>
+
+          <div class="decentInputs">
+            <label for="tutor">Tutor</label>
+
+            <select name="tutor" id="tutor" style="width: 100%">
+              <!-- Aca van los tutores insertados con js -->
+            </select>
+          </div>
+
+          <div class="decentInputs">
+            <label for="nameServicio">Nombre del Servicio Comunitario</label>
+            <input
+              id="nameServicio"
+              name="nameServicio"
+              type="text"
+              placeholder="Ingrese nombre del Servicio Comunitario"
+            />
+          </div>
+          <div class="decentInputs">
+            <label for="fechaServicio">
+              Fecha de Inicio del Servicio Comunitario
+            </label>
+            <input
+              id="fechaServicio"
+              name="fechaServicio"
+              type="date"
+              placeholder
+            />
+          </div>
+          <div class="decentInputs">
+            <label for="pnf">PNF</label>
+
+            <select name="pnf" id="pnf" style="width: 100%">
+              <!-- carreras insertadas con js -->
+            </select>
+          </div>
+          <input
+            id="fechaServicioFin"
+            name="fechaServicioFin"
+            type="hidden"
+            placeholder
+          />
+          <input type="hidden" id="servicioId" value="" />
+          <br />
+          <br />
+          <div class="caja-btn" style="margin-top: 40px">
+            <button class="edit">Editar</button>
+            <button class="noEdit">Volver sin editar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!--  -->
+    <!-- <div id="overlay2" class="overlay disable">
+      <div class="container-edit">
+        <h1>Usuarios a eliminar</h1>
+        <h2>
+          Los usuarios eliminados tambien se eliminaran como estudiantes, con
+          sus respectivos servicios comunitarios ¿Esta seguro que desea
+          continuar?
+        </h2>
+        <div>
+          <ul class="nombres"></ul>
+        </div>
+
+        <div class="caja-btn">
+          <button class="delete">Eliminar</button>
+          <button class="noDelete">Volver sin eliminar</button>
+        </div>
+      </div>
+    </div> -->
+    <!--  -->
+
+    <section id="sidebar">
+      <a href="admin.html" class="brand">
+        <span class="text">Inicio</span>
+      </a>
+      <ul class="side-menu top">
+        <li>
+          <a href="panel_principal.html">
+            <i class="bx bxs-dashboard"></i>
+            <span class="text">Panel Principal</span>
+          </a>
+        </li>
+
+        <li class="active">
+          <a href="gestion_usuario.html">
+            <i class="bx bxs-group"></i>
+            <span class="text">Gestión de Usuarios</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="gestion_sc.html">
+            <i class="bx bxs-user-pin"></i>
+            <span class="text">Gestión Servicio Comunitario</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="historial_sc.html">
+            <i class="bx bxs-dashboard"></i>
+            <span class="text">Servicios No Activos</span>
+          </a>
+        </li>
+      </ul>
+      <ul class="side-menu">
+        <li>
+          <a href="/internal-pages/admin.html" class="logout">
+            <i class="bx bxs-log-out-circle"></i>
+            <span class="text">Cerrar</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <section id="content">
+      <main>
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Buscar por nombre"
+          style="
+            padding: 18px;
+            border: none;
+            width: 80%;
+            margin: 0 auto;
+            display: block;
+            border-radius: 1000px;
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+          "
+        />
+        <div class="head-title">
+          <div class="left">
+            <h1>Panel de Usuarios</h1>
+          </div>
+        </div>
+
+        <ul class="box-info">
+          <li>
+            <i class="bx bxs-group"></i>
+            <span id="userSpan" class="text">
+              <p>Usuarios Registrados</p>
+            </span>
+          </li>
+        </ul>
+
+        <div class="table-data">
+          <div class="order">
+            <div class="head">
+              <h3>Usuarios</h3>
+              <a id="editSelect" class="icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M4 21a1 1 0 0 0 .24 0l4-1a1 1 0 0 0 .47-.26L21 7.41a2 2 0 0 0 0-2.82L19.42 3a2 2 0 0 0-2.83 0L4.3 15.29a1.06 1.06 0 0 0-.27.47l-1 4A1 1 0 0 0 3.76 21A1 1 0 0 0 4 21zM18 4.41L19.59 6L18 7.59L16.42 6zM5.91 16.51L15 7.41L16.59 9l-9.1 9.1l-2.11.52z"
+                  />
+                </svg>
+              </a>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Cédula</th>
+                  <th>Nombre y Apellido</th>
+                  <th>Seleccionar</th>
+                </tr>
+              </thead>
+              <tbody id="contenedor-usuarios">
+                <!-- Aca van los usuarios cargados desde la base de datos con js (para editar y eliminar datos y usuarios respectivamente) -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </section>
+
+    <script type="module" src="../src/script/gestion_usuario.js"></script>
+  </body>
+</html>

@@ -1,5 +1,5 @@
-import { AllEstudents } from "./fetchGet.js";
-import { RUTA } from "./global.js";
+import { AllEstudents } from "./utils/fetchGet.js";
+import { RUTA } from "./utils/global.js";
 
 const token = localStorage.getItem("TOKEN");
 console.log(token);
@@ -13,7 +13,11 @@ arrayEstudents = arrayEstudents.sort((a, b) => {
 });
 
 arrayEstudents.forEach((estudiante) => {
-  if (estudiante.user.roleId == 2) {
+  if (
+    estudiante.user.roleId == 2 &&
+    new Date(estudiante.servicio.fechaFin).getMonth() ==
+      new Date(estudiante.servicio.fechaInicio).getMonth() + 1
+  ) {
     const ci = estudiante.user.cedula;
     const name = estudiante.user.nombre;
     const lastname = estudiante.user.apellido;
@@ -56,65 +60,6 @@ const contador = (obj) => {
 };
 
 contador(arrayEstudents);
-
-// Verificacion de checkbox para delete
-// const verificacionDelete = (obj) => {
-//   const arrChecked = [];
-
-//   for (let i = 0; i < obj.length; i++) {
-//     if (obj[i].checked) {
-//       arrChecked.push(obj[i]);
-//     }
-//   }
-
-//   if (arrChecked.length > 0) {
-//     arrChecked.forEach((checked) => {
-//       let id = checked.value.replace("select-", "");
-//       let label = document.querySelector(`label[for="${id}"]`);
-
-//       document.querySelector(".nombres").innerHTML += `
-//       <li>${label.textContent.trim()}</li>
-//       `;
-//     });
-
-//     const container = document.querySelector("#overlay2");
-//     container.classList.remove("disable");
-
-// const btnDelete = document.querySelector(".delete");
-// const btnNoDelete = document.querySelector(".noDelete");
-
-// btnDelete.addEventListener("click", () => sendDelete(arrChecked));
-// btnNoDelete.addEventListener("click", closeDelete);
-
-// console.log(arrChecked[1].id);
-//   }
-// };
-
-// const sendDelete = (array) => {
-//   for (let i = 0; i < array.length; i++) {
-//     fetch(`${RUTA}/Estudiante/${array[i].id}`, {
-//       method: "DELETE",
-//       headers: {
-//         "Content-Type": "application/json",
-//         "token-x": token,
-//       },
-//     })
-//       .then((response) => {
-//         if (!response.status == 200) {
-//           alert("Error al eliminar el usuario");
-//           throw new Error("Error al eliminar el usuario");
-//         } else {
-//           alert(`Usuario eliminado exitosamente`);
-//         }
-//       })
-//       .catch((error) => {
-//         console.error("Error:", error);
-//       });
-//   }
-
-//   closeW();
-//   location.reload();
-// };
 
 // Verificacion de checkbox para edit
 const verificacionEdit = (obj) => {
@@ -165,8 +110,12 @@ const verificacionEdit = (obj) => {
         const servicioTituloInput = (document.querySelector(
           "#nameServicio"
         ).value = estudiante.servicio.titulo);
-        const servicioInicioInput = (document.querySelector("#fechaServicio").value = fechaInicio.slice(0, fechaInicio.indexOf("T")));
-        const servicioFinInput = (document.querySelector("#fechaServicioFin").value = fechaFin.slice(0, fechaInicio.indexOf("T")));
+        const servicioInicioInput = (document.querySelector(
+          "#fechaServicio"
+        ).value = fechaInicio.slice(0, fechaInicio.indexOf("T")));
+        const servicioFinInput = (document.querySelector(
+          "#fechaServicioFin"
+        ).value = fechaFin.slice(0, fechaInicio.indexOf("T")));
       }
     });
 
@@ -185,8 +134,12 @@ const verificacionEdit = (obj) => {
       const correo = document.querySelector("#mail").value;
       const telefono = document.querySelector("#tlf").value;
       const direccion = document.querySelector("#dire").value;
-      const carreraId = document.querySelector("#pnf").value.replace("pnf-", "");;
-      const tutorId = document.querySelector("#tutor").value.replace("tutor-", "");;
+      const carreraId = document
+        .querySelector("#pnf")
+        .value.replace("pnf-", "");
+      const tutorId = document
+        .querySelector("#tutor")
+        .value.replace("tutor-", "");
       const servicioId = document.querySelector("#servicioId").value;
       const titulo = document.querySelector("#nameServicio").value;
       const fechaInicio = document.querySelector("#fechaServicio").value;
@@ -231,30 +184,17 @@ const verificacionEdit = (obj) => {
 
 // cierre de la ventana de edit y delete
 const closeW = () => {
-  // const container2 = document.querySelector("#overlay2");
-  // container2.classList.add("disable");
-
   const container1 = document.querySelector("#overlay1");
   container1.classList.add("disable");
   document.querySelector(".nombres").innerHTML = "";
 };
 
 setTimeout(() => {
-  // const btnDelete = document.querySelector("#deleteSelect");
-  // btnDelete.addEventListener("click", () => verificacionDelete(checkboxes));
-
   const btnEdit = document.querySelector("#editSelect");
   const checkboxes = document.querySelectorAll('input[type="radio"]');
   btnEdit.addEventListener("click", () => verificacionEdit(checkboxes));
 }, 500);
 
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -339,14 +279,17 @@ const sendEdit = async (user, servicios, estudiante) => {
   }
 
   try {
-    const responseServicios = await fetch(`${RUTA}/Servicio/${servicios.servicioId}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        "token-x": token,
-      },
-      body: JSON.stringify(servicios),
-    });
+    const responseServicios = await fetch(
+      `${RUTA}/Servicio/${servicios.servicioId}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "token-x": token,
+        },
+        body: JSON.stringify(servicios),
+      }
+    );
 
     if (!responseServicios.status === 200) {
       throw new Error("Error al editar el Servicio");
@@ -367,77 +310,57 @@ const sendEdit = async (user, servicios, estudiante) => {
 
   console.log(objEstudiante);
 
-  // try {
-  //   const responseEstudiante = await fetch(`${RUTA}/Estudiante`, {
-  //     method: "PUT",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       "token-x": token,
-  //     },
-  //     body: JSON.stringify(objEstudiante),
-  //   });
-
-  //   if (!responseEstudiante.status === 200) {
-  //     throw new Error("Error al editar los datos del estudiante");
-  //   }
-
-  //   valorEstudiante = true;
-  //   console.log("Datos de estudiante actualizados exitosamente");
-  // } catch (error) {
-  //   console.error("Error:", error);
-  // }
-
   if (valorUser || valorServicios) {
     alert("Todos los valores se actualizaron correctamente.");
   } else {
-    alert("Es posible que algunos o ninguno de los datos se hayan actualizado correctamente. Por favor, verifique.");
+    alert(
+      "Es posible que algunos o ninguno de los datos se hayan actualizado correctamente. Por favor, verifique."
+    );
   }
 
   location.reload();
 };
 
-
-
 // search
 
-const searchInput = document.getElementById('searchInput');
-  
-  searchInput.addEventListener('input', () => {
-    const searchTerm = searchInput.value.trim().toLowerCase();
-    const filteredUsers = arrayEstudents.filter(usuario => {
-      const nombreCompleto = `${usuario.user.nombre} ${usuario.user.apellido}`.toLowerCase();
-      return nombreCompleto.includes(searchTerm);
-    });
-  
-    displayResults(filteredUsers);
-  });
-  
-  function displayResults(users) {
-    usersContainer.innerHTML = '';
+const searchInput = document.getElementById("searchInput");
 
-    users.forEach((estudiante) => {
-      if (estudiante.user.roleId == 2) {
-        const ci = estudiante.user.cedula;
-        const name = estudiante.user.nombre;
-        const lastname = estudiante.user.apellido;
-        const tlf = estudiante.user.telefono;
-        const email = estudiante.user.correo;
-        const adress = estudiante.user.direccion;
-        usersContainer.innerHTML +=
-          "<tr><td><p>" +
-          ci +
-          "</p></td><td><p>" +
-          name +
-          " " +
-          lastname +
-          "</p></td><td><p>" +
-          tlf +
-          "</p></td><td><p>" +
-          email +
-          "</p></td><td><p>" +
-          adress +
-          "</p></td></tr>";
-      }
-    });
-  }
-  
+searchInput.addEventListener("input", () => {
+  const searchTerm = searchInput.value.trim().toLowerCase();
+  const filteredUsers = arrayEstudents.filter((usuario) => {
+    const nombreCompleto =
+      `${usuario.user.nombre} ${usuario.user.apellido}`.toLowerCase();
+    return nombreCompleto.includes(searchTerm);
+  });
+
+  displayResults(filteredUsers);
+});
+
+function displayResults(users) {
+  usersContainer.innerHTML = "";
+
+  users.forEach((estudiante) => {
+    if (estudiante.user.roleId == 2) {
+      const ci = estudiante.user.cedula;
+      const name = estudiante.user.nombre;
+      const lastname = estudiante.user.apellido;
+      const tlf = estudiante.user.telefono;
+      const email = estudiante.user.correo;
+      const adress = estudiante.user.direccion;
+      usersContainer.innerHTML +=
+        "<tr><td><p>" +
+        ci +
+        "</p></td><td><p>" +
+        name +
+        " " +
+        lastname +
+        "</p></td><td><p>" +
+        tlf +
+        "</p></td><td><p>" +
+        email +
+        "</p></td><td><p>" +
+        adress +
+        "</p></td></tr>";
+    }
+  });
+}

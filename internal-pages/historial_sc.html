@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css" />
+    <link rel="stylesheet" href="../styles/style_gestion.css" />
+    <title>Servicio Comunitario</title>
+  </head>
+
+  <body>
+    <section id="sidebar">
+      <a href="admin.html" class="brand">
+        <span class="text">Inicio</span>
+      </a>
+      <ul class="side-menu top">
+        <li>
+          <a href="panel_principal.html">
+            <i class="bx bxs-dashboard"></i>
+            <span class="text">Panel Principal</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="gestion_usuario.html">
+            <i class="bx bxs-group"></i>
+            <span class="text">Gestión de Usuarios</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="gestion_sc.html">
+            <i class="bx bxs-user-pin"></i>
+            <span class="text">Gestión Servicio Comunitario</span>
+          </a>
+        </li>
+
+        <li class="active">
+          <a href="historial_sc.html">
+            <i class="bx bxs-dashboard"></i>
+            <span class="text">Servicios No Activos</span>
+          </a>
+        </li>
+      </ul>
+      <ul class="side-menu">
+        <li>
+          <a href="admin.html" class="logout">
+            <i class="bx bxs-log-out-circle"></i>
+            <span class="text">Cerrar</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <section id="content">
+      <main>
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Buscar por nombre"
+          style="
+            padding: 18px;
+            border: none;
+            width: 80%;
+            margin: 0 auto;
+            display: block;
+            border-radius: 1000px;
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+          "
+        />
+        <div class="head-title">
+          <div class="left">
+            <h1>Servicios No Activos</h1>
+          </div>
+        </div>
+
+        <div class="table-data">
+          <div class="order">
+            <div class="head">
+              <h3>Usuarios</h3>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Cédula</th>
+                  <th>Nombre y Apellido</th>
+                  <th>Titulo del Servicio</th>
+                  <th>Estado del Servicio</th>
+                  <th>Fecha de Inicio</th>
+                  <th>Fecha de Finalización</th>
+                </tr>
+              </thead>
+              <tbody id="contenedor-usuarios">
+                <tr>
+                  <td>
+                    <p>123456</p>
+                  </td>
+                  <td>
+                    <label for="asd"> Carlos Del Valle </label>
+                  </td>
+                  <td>
+                    <p>Aprobado</p>
+                  </td>
+                  <td>
+                    <p>Servicio la casa de dios.</p>
+                  </td>
+                  <td>
+                    <p>2023-07-09</p>
+                  </td>
+                  <td>
+                    <p>2023-07-09</p>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <p>12345612</p>
+                  </td>
+                  <td>
+                    <label for="asd"> Jose Carrizo </label>
+                  </td>
+                  <td>
+                    <p>No Aprobado</p>
+                  </td>
+                  <td>
+                    <p>Servicio Parques comunales</p>
+                  </td>
+                  <td>
+                    <p>2023-07-09</p>
+                  </td>
+                  <td>
+                    <p>2023-07-09</p>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <p>234567</p>
+                  </td>
+                  <td>
+                    <label for="asd"> Pedro Colmenarez </label>
+                  </td>
+                  <td>
+                    <p>Aprobado</p>
+                  </td>
+                  <td>
+                    <p>Servicio Colegio San Simon</p>
+                  </td>
+                  <td>
+                    <p>2023-07-09</p>
+                  </td>
+                  <td>
+                    <p>2023-07-09</p>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <p>678467</p>
+                  </td>
+                  <td>
+                    <label for="asd"> Eugenio Belen </label>
+                  </td>
+                  <td>
+                    <p>Aprobado</p>
+                  </td>
+                  <td>
+                    <p>Servicio Laboratorio Universitario</p>
+                  </td>
+                  <td>
+                    <p>2023-07-09</p>
+                  </td>
+                  <td>
+                    <p>2023-07-09</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </section>
+
+    <script type="module" src="../src/script/historial_sc.js"></script>
+  </body>
+</html>

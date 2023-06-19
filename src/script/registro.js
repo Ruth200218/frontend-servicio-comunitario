@@ -1,4 +1,4 @@
-import { registroFetchPost } from "./registroFetch.js";
+import { registroFetchPost } from "./utils/registroFetch.js";
 import { RUTA } from "./global.js";
 
 const urlTutores = `${RUTA}/Tutor`;
